@@ -18,7 +18,12 @@ class DataStreamer {
 
     request.onload = () => {
       if (request.status === 200) {
+        try {
         callback(JSON.parse(request.responseText));
+        } catch (error) {
+        console.error("Error parsing JSON:", error);
+        // Handle the error
+        }
       } else {
         alert ('Request failed');
       }
